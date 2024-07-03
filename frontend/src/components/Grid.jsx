@@ -40,7 +40,25 @@ export const Td = styled.td`
   }
 `;
 
-export default function Grid({ users }) {
+export default function Grid({ users, setUsers, setOnEdit }) {
+
+  const handleDelete = async (id) => {
+    await axios
+      .delete("http://localhost:8800/" + id)
+      .then(({data}) => {
+        const newArray = users.filter((user) => user.id !== id);
+        setUsers(newArray);
+        toast.success(data);
+      })
+      .catch(({data}) => toast.error(data));
+
+      setOnEdit(null);
+  }
+
+  const handleEdit = (user) => {
+    setOnEdit(user);
+  }
+
   return (
     <Table>
         <Thead>
@@ -58,8 +76,8 @@ export default function Grid({ users }) {
                     <Td width="30%"> {user.nome} </Td>
                     <Td width="30%"> {user.email} </Td>
                     <Td width="20%" onlyWeb> {user.fone} </Td>
-                    <Td style={{ textAlign: 'center' }} width="5%"> <FaEdit/> </Td>
-                    <Td style={{ textAlign: 'center' }} width="5%"> <FaTrash/> </Td>
+                    <Td style={{ textAlign: 'center' }} width="5%"> <FaEdit onClick={() => handleEdit(user)}/> </Td>
+                    <Td style={{ textAlign: 'center' }} width="5%"> <FaTrash onClick={() => handleDelete(user.id)}/> </Td>
                 </Tr>
             ))}
         </Tbody>
