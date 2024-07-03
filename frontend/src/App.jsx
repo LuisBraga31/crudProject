@@ -1,7 +1,14 @@
+import { useEffect, useState } from 'react';
+
 import GlobalStyle from './styles/global';
 import styled from "styled-components";
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+
+import Form from './components/Form';
+import Grid from './components/Grid';
+
 
 const Container = styled.div`
   width: 100%;
@@ -18,10 +25,28 @@ const Title = styled.h2``;
 
 function App() {
 
+  const [ users, setUsers] = useState([]);
+  const [onEdit, setOnEdit] = useState(null);
+
+  const getUsers = async () => {
+    try {
+      const res = await axios.get("http://localhost:8800");
+      setUsers(res.data.sort((a,b) => (a.nome > b.nome ? 1 : -1)));
+    } catch (e) {
+      toast.error(e);
+    }
+  }
+
+  useEffect(() => {
+    getUsers();
+  },[setUsers]);
+
   return (
     <>
       <Container>
         <Title> Usuários </Title>
+        <Form/>
+        <Grid users={users}/>
       </Container>
       <ToastContainer autoClose={3000} position="bottom-left"/>
       <GlobalStyle/>
