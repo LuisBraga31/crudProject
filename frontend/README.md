@@ -1,13 +1,8 @@
-# Projeto CRUD
+# React + Vite
 
-Esse projeto foi o desenvolvimento de sisteminha de cadastro de usuarios utilizando NODE, REACT e MySQL.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Tecnologias Utilizadas:
+Currently, two official plugins are available:
 
-Essas foram as seguintes tecnologias usadas para criação do projeto.
-
-* React 
-* JavaScript
-* Styled Components
-* Node JS
-* MySQL
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
