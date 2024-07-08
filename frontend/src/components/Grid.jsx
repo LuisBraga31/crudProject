@@ -76,8 +76,8 @@ export default function Grid({ users, setUsers, setOnEdit }) {
                     <Td width="30%"> {user.nome} </Td>
                     <Td width="30%"> {user.email} </Td>
                     <Td width="20%" onlyWeb> {user.fone} </Td>
-                    <Td style={{ textAlign: 'center' }} width="5%"> <FaEdit onClick={() => handleEdit(user)}/> </Td>
-                    <Td style={{ textAlign: 'center' }} width="5%"> <FaTrash onClick={() => handleDelete(user.id)}/> </Td>
+                    <Td style={{ textAlign: 'center' }} width="5%"> <FaEdit style={{cursor: 'pointer'}} onClick={() => handleEdit(user)}/> </Td>
+                    <Td style={{ textAlign: 'center' }} width="5%"> <FaTrash style={{cursor: 'pointer'}} onClick={() => handleDelete(user.id)}/> </Td>
                 </Tr>
             ))}
         </Tbody>
